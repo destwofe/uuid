@@ -177,15 +177,17 @@ func (uuid UUID) URN() string {
 }
 
 func encodeHex(dst []byte, uuid UUID) {
-	// FIX mssql
+	// FIX - mssql big endian
 	hex.Encode(dst, uuid[3:4])
 	hex.Encode(dst[2:4], uuid[2:3])
 	hex.Encode(dst[4:6], uuid[1:2])
 	hex.Encode(dst[6:8], uuid[0:1])
 	dst[8] = '-'
-	hex.Encode(dst[9:13], uuid[4:6])
+	hex.Encode(dst[9:11], uuid[5:6])
+	hex.Encode(dst[11:13], uuid[4:5])
 	dst[13] = '-'
-	hex.Encode(dst[14:18], uuid[6:8])
+	hex.Encode(dst[14:16], uuid[7:8])
+	hex.Encode(dst[16:18], uuid[6:7])
 	dst[18] = '-'
 	hex.Encode(dst[19:23], uuid[8:10])
 	dst[23] = '-'
