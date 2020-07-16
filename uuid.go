@@ -87,6 +87,25 @@ func Parse(s string) (UUID, error) {
 		}
 		uuid[i] = v
 	}
+
+	u0 := uuid[0]
+	u1 := uuid[1]
+	u2 := uuid[2]
+	u3 := uuid[3]
+	u4 := uuid[4]
+	u5 := uuid[5]
+	u6 := uuid[6]
+	u7 := uuid[7]
+
+	uuid[0] = u3
+	uuid[1] = u2
+	uuid[2] = u1
+	uuid[3] = u0
+	uuid[4] = u5
+	uuid[5] = u4
+	uuid[6] = u7
+	uuid[7] = u6
+
 	return uuid, nil
 }
 
